@@ -1,6 +1,26 @@
-// Funktion zum Konvertieren von .dot-Dateien
-// (Graphviz dot Dateien)
-function t_matrix = transition_matrix_dot(path)
+//
+// Summary:
+// Scilab helper function that be used to convert a given
+// dot file into a transition matrix for a markov chain.
+//
+// Notes:
+// The dot file must have the following format:
+// digraph foobar {
+//     node_a -> node_b [label="0.2"];
+//     ...
+// }
+// 
+// Application:
+// P = transition_matrix_dot(file_name)
+//
+// Author: Florian Mayer
+// Datum: 27.08.15
+//
+
+rosci_path_gvpr = """C:\Program Files (x86)\Graphviz2.38\bin\gvpr.exe""";
+rosci_tempfile_name = "TEMPFILE42";
+
+function t_matrix = rosci_transition_matrix_dot(path)
     // gvpr ist ein Tool aus der Graphviz-Suite
     // und ist sehr gut in der zugehörigen Manpage dokumentiert.
     // Insgesamt werden 3 Prozesse gestartet
@@ -14,10 +34,9 @@ function t_matrix = transition_matrix_dot(path)
     // zuletzt generiert der dritte Prozess vollwertigen Scilab-
     // Code, der nun innerhalb des Funktionskontextes ausgeführt
     // werden kann.
-    path_gvpr = """C:\Program Files (x86)\Graphviz2.38\bin\gvpr.exe""";
-    tempfile_name = "TEMPFILEXXX123123DOOOAWER";
+    rosci_path_gvpr = """C:\Program Files (x86)\Graphviz2.38\bin\gvpr.exe""";
 
-    [res1, a1, b1] = dos(path_gvpr + " ""BEG_G { ..
+    [res1, a1, b1] = dos(rosci_path_gvpr + " ""BEG_G { ..
             node_t new_nodes[]; ..
             int cnt = 0; ..
             int num_nodes = nNodes($); ..
@@ -40,14 +59,14 @@ function t_matrix = transition_matrix_dot(path)
                 } ..
             }    ..
             write($); ..
-        }"" " + path + " > " + tempfile_name);
+        }"" " + path + " > " + rosci_tempfile_namename);
 		
-    [res2, a2, b2] = dos(path_gvpr + " ""BEGIN { int cnt = 0; } ..
+    [res2, a2, b2] = dos(rosci_path_gvpr + " ""BEGIN { int cnt = 0; } ..
           BEG_G { printf(\""MAT%d = [\n\"", cnt); } ..
           N { printf(\""\n\""); } ..
           E { printf(\""%s, \"", label); } ..
           END_G { printf(\""];\n\""); cnt++;  ..
-        }"" " + tempfile_name);
+        }"" " + rosci_tempfile_namename);
     
     // Scilab-Code für die Erzeugung einer Adjazenzmatrix wird
     // im aktuellen Funktionskontext ausgeführt und das Ergebnis
@@ -56,5 +75,5 @@ function t_matrix = transition_matrix_dot(path)
     // Funktion nicht mehr!
     execstr(res2);
     t_matrix = MAT0;
-	mdelete(tempfile_name);
+	mdelete(rosci_tempfile_namename);
 endfunction
