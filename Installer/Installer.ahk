@@ -1,24 +1,24 @@
 ﻿#NoEnv
+#Include check_for_programs.ahk
+#Include manipulate_path.ahk
 
-global pathPath := "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment"
-global oldPath := get_path()
-global gvprPath := "C:\Program Files\Graphviz2.38\bin"
-global infoText := "Pfad Variable wurde erfolgreich gesetzt. Bitte starten Sie den Computer neu, "
-global infoText2 := "da nur so die Änderungen übernommen werden."
+global downloadGv := "http://graphviz.org/Download_windows.php"
+global downloadSc := "http://www.scilab.org/"
 
-set_path()
+checkDependencies()
 {
-	local newPath := oldPath . ";" . gvprPath
-	RegWrite, REG_EXPAND_SZ, %pathPath%, PATH, %newPath%
-	return
+	if(getValue("Graphviz", "DisplayVersion") == "")
+	{
+		MsgBox, You need to install Graphviz
+		Run, %downloadGv%
+	}
+	
+	if(getValueFuzzy("scilab", "DisplayName") == "")
+	{
+		MsgBox, You need to install Graphviz
+		Run, %downloadSc%
+	}
 }
 
-get_path()
-{
-	local out := ""
-	RegRead, out, %pathPath%, Path
-	return out
-}
 
-set_path()
-MsgBox, % infoText . infoText2
+checkDependencies()
