@@ -1,0 +1,10 @@
+digraph markov01 {
+    a -> b [label = 0.7];
+    a -> ccc [label = 0.0];
+    b -> a [label = 0.8];
+    b -> ccc [label = 0.1];
+    ccc -> ccc [label = 0.5];
+    ccc -> a [label = 0.0];
+    ccc -> d [label = 0.3];
+}
+

@@ -1,0 +1,7 @@
+- Aufgabe5_Graph.dot geht nicht, da keine Zahlen vorhanden sind.
+- Aufgabe11a und 11b gehen nicht.
+- Buchreihenfolge geht nicht.
+- Beide Verfuegbarkeit_Multiprozessor gehen nicht.
+- Vier Speichermoduln gehen nicht.
+
+

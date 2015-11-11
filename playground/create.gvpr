@@ -1,0 +1,25 @@
+BEG_G {
+    node_t new_nodes[];
+    int cnt = 0;
+    int num_nodes = nNodes($);
+}
+
+N { new_nodes[cnt++] = $; }
+
+END_G {
+    int i, j;
+    node_t head_node, tail_node;
+    edge_t e1;
+    for(i = 0; i < num_nodes; i++){
+        head_node = new_nodes[i];
+        for (j = 0; j < num_nodes; j++){
+            tail_node = new_nodes[j];
+            if (NULL == isEdge(tail_node, head_node, "")) {
+                e1 = edge(tail_node, head_node, "");
+                e1.label = "0.0";
+            }
+        }
+    }
+
+    write($);
+}

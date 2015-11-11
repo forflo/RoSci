@@ -1,0 +1,11 @@
+/* 
+Datei: Aufgabe4.dot
+Datum:19.3.10
+Funktion: Uebergangsgraph von Aufgabe 4, Uebungsblatt 1. 2 Zustaende
+*/ 
+digraph Aufgabe1
+{ m -> g [label=0.3]
+  m -> m [label=0.7]
+  g -> m [label=0.2]
+  g -> g [label=0.8]
+}

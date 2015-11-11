@@ -1,0 +1,30 @@
+/* 	Datei: Programmstruktur_optimiert.dot
+ 	Datum: 23.5.08
+	Funktion: Beschreibt die Programmstruktur mit geschachtelten Funktionsaufrufen.
+		  Nach der Rueckkehr von einer Unterfunktion ist eine Abkuerzung zur Laufzeit-
+		  Optimierung moeglich.
+		  Die Programmbeendigung entspricht dem einen absorbierenden Zustand
+*/
+
+digraph "Programmlaufzeit_optimiert" {
+	main_1  -> main_2   [ label = "0.5" ]
+	main_1  -> sub_1_1  [ label = "0.5" ]
+	sub_1_1 -> sub_2_1  [ label = "0.5" ]
+	sub_1_1 -> opt_2  [ label = 0.45 ]
+	sub_1_1 -> sub_1_2  [ label = 0.05 ]
+	sub_2_1 -> sub_3    [ label = "0.5" ]
+	sub_2_1 -> sub_2_2  [ label = 0.05 ]
+	sub_2_1 -> opt_1  [ label = 0.45 ]
+	sub_3   -> sub_2_2  [ label = 0.1 ]
+	sub_3   -> opt_1  [ label = 0.9 ]
+	sub_2_2 -> sub_1_2  [ label = 0.1 ]
+	sub_2_2 -> opt_2 [ label = 0.9 ]
+	sub_1_2 -> main_2   [ label = "1.0" ]
+	opt_1 -> sub_1_2 [ label = 0.1 ]
+	opt_1 -> opt_2 [ label = 0.9 ]
+	opt_2 -> main_2 [ label = 1.0 ]
+	main_2  -> main_2   [ label = "1.0" ]
+
+
+}
+

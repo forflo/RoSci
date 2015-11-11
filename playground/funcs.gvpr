@@ -1,0 +1,9 @@
+BEGIN {
+    void foo(graph_t val){
+        write(val);
+    }
+}
+
+BEG_G {
+    foo($);
+}

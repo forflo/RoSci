@@ -1,0 +1,27 @@
+BEGIN {
+    graph_t new = graph(ARGV[0], "D");
+    node_t tmp;
+    int nodes[node_t];
+    
+    int i;
+    int edges = ARGV[1];
+    node_t k, j;
+
+    for (i=0; i<edges; i++){
+        node(new, i);
+        tmp = node(new, i);
+        nodes[tmp] = 1;
+    }
+    
+    node_t hd = fstnode(new);
+    node_t tl = fstnode(new);
+
+    for (nodes[k]){
+        for (nodes[j]){
+            edge_sg(new, j, k, "foobar");
+        }
+    }
+
+    write(new);
+}
+

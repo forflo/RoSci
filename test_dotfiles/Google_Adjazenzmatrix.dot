@@ -1,0 +1,16 @@
+/* 	Datei: Google_Adjazenzmatrix.dot
+ 	Datum: 16.5.08
+	Funktion: Adjazenzmatrix fuer Google-Aufgabe: Mit "label=1" wird beschrieben, wenn ein Link von Seite i nach Seite j existiert
+*/
+
+digraph "Google" {
+	"Seite1" -> "Seite2" [ label = "1" ]
+	"Seite2" -> "Seite1" [ label = "1" ]
+	"Seite2" -> "Seite3" [ label = "1" ]
+	"Seite3" -> "Seite4" [ label = "1" ]
+	"Seite2" -> "Seite4" [ label = "1" ]
+	"Seite4" -> "Seite2" [ label = "1" ]
+	"Seite4" -> "Seite1" [ label = "1" ]
+	"Seite1" -> "Seite4" [ label = "1" ]
+}
+

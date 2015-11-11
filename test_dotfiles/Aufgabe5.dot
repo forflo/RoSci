@@ -1,0 +1,15 @@
+/* 
+Datei: Aufgabe5.dot
+Datum:19.3.10
+Funktion: Uebergangsgraph von Aufgabe 5, Uebungsblatt 1. 3 Zustaende
+*/ 
+digraph Aufgabe5
+{ gut -> gut 		[label=0.7]
+  gut -> schlecht 	[label=0.2]
+  gut -> rep 		[label=0.1]
+  schlecht -> schlecht 	[label=0.7]
+  schlecht -> rep 	[label=0.3]
+  rep -> rep 		[label=0.4]
+  rep -> schlecht 	[label=0.2]
+  rep -> gut 		[label=0.4]
+}

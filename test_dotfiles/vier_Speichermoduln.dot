@@ -1,0 +1,31 @@
+﻿/* 
+Datei: vier_Speichermoduln.dot
+Datum:2.5.08
+Funktion. Modelliert die Speicherkonflikte eines Biprozessors mit vier Speicherbänken
+Zugriffswahrscheinlichkeit jedes Prozesors auf jede Speicherbank gleich
+Zustände n1 ... n4: Konflikt bei Speicherbank 1 ...4
+Zustand n0: kein Speicherkonflikt
+Explizite Typumwandlung bei den Uebergangswahrscheinlichkeiten wegen C-Syntax notwendig
+*/ 
+
+digraph vier_Speichermoduln {
+
+n0 -> n1 [label="(float)1/16"]
+n1 -> n0 [label="(float)3/4"]
+n1 -> n1 [label="(float)1/4"]
+
+n0 -> n2 [label="(float)1/16"]
+n2 -> n0 [label="(float)3/4"]
+n2 -> n2 [label="(float)1/4"]
+
+n0 -> n3 [label="(float)1/16"]
+n3 -> n0 [label="(float)3/4"]
+n3 -> n3 [label="(float)1/4"]
+
+n0 -> n4 [label="(float)1/16"]
+n4 -> n0 [label="(float)3/4"]
+n4 -> n4 [label="(float)1/4"]
+
+n0 -> n0 [label="(float)3/4"]
+
+}

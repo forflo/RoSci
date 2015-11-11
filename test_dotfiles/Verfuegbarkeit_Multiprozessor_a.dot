@@ -1,0 +1,58 @@
+/* 
+Datei: Aufgabe10.dot, Aufgabenteil a)
+Datum:24.5.08, Ergaenzung: 30.5.08, Ergänzung: 3.5.10
+Funktion: Modelliert die Verfuegbarkeit eines Systems aus 3 Speichermoduln und 2 Prozessoren
+Zustaende n_i_j: i Speichermoduln intakt, j Prozessoren intakt, hier i=0,..3, j=0,..2 
+Ausfallrate "lp" eines Prozessors, "lm" eines Speichermoduls
+Reparaturrate "mp" eines Prozesors, "mm" eines Speichermoduls
+vgl. Vorlesung 2.2.2
+*/ 
+
+digraph Verfuegbarkeit_Multiprozessor {
+	subgraph cluster_verfuegbar 	{  //"cluster" ist zur korrekten Anzeige notwendig 
+	label="System verfuegbar"
+	n_3_2;
+	n_2_2;
+	n_1_2;
+	n_3_1;
+	n_1_1;
+	n_2_1;
+	} // In diesen Zustaenden ist das System verfuegbar
+
+n_3_2 -> n_2_2 [label="3*lm"]	//zuerst alle "waagrechten" Uebergaenge in 2.2.2
+n_2_2 -> n_1_2 [label="2*lm"]
+n_1_2 -> n_0_2 [label="1*lm"]
+
+n_2_2 -> n_3_2 [label="mm"]
+n_1_2 -> n_2_2 [label="mm"]
+n_0_2 -> n_1_2 [label="mm"]
+
+n_3_1 -> n_2_1 [label="3*lm"]
+n_2_1 -> n_1_1 [label="2*lm"]
+n_1_1 -> n_0_1 [label="1*lm"]
+
+n_2_1 -> n_3_1 [label="mm"]	// fuer Aufgabenteil a)
+n_1_1 -> n_2_1 [label="mm"]
+n_0_1 -> n_1_1 [label="mm"]
+
+n_2_0 -> n_3_0 [label="mm"]	// fuer Aufgabenteil a)
+n_1_0 -> n_2_0 [label="mm"]
+
+n_3_2 -> n_3_1 [label="2*lp"]	// ab jetzt die "senkrechten"
+n_2_2 -> n_2_1 [label="2*lp"]
+n_1_2 -> n_1_1 [label="2*lp"]
+
+n_3_1 -> n_3_2 [label="mp"]	
+n_2_1 -> n_2_2 [label="mp"]
+n_1_1 -> n_1_2 [label="mp"]
+n_0_1 -> n_0_2 [label="mp"]
+
+n_3_1 -> n_3_0 [label="lp"]	
+n_2_1 -> n_2_0 [label="lp"]
+n_1_1 -> n_1_0 [label="lp"]
+
+n_3_0 -> n_3_1 [label="mp"]	
+n_2_0 -> n_2_1 [label="mp"]
+n_1_0 -> n_1_1 [label="mp"]
+
+}

@@ -1,0 +1,11 @@
+/* 
+Datei: Aufgabe2.dot
+Datum:28.3.11
+Funktion: Uebergangsgraph von Aufgabe 2, Uebungsblatt 1. 2 Zustaende
+*/ 
+digraph Aufgabe2
+{ aktiv -> inaktiv [label=0.2]
+  aktiv -> aktiv [label=0.8]
+  inaktiv -> inaktiv [label=0.4]
+  inaktiv -> aktiv [label=0.6]
+}

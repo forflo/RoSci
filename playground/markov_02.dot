@@ -1,0 +1,7 @@
+digraph markov {
+    a -> b [label = 0.7];
+    a -> a [label = 0.3];
+    b -> a [label = 0.8];
+    b -> b [label = 0.2];
+    b -> c [label = 0.8];
+}

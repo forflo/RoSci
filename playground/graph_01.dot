@@ -1,0 +1,7 @@
+graph foo {
+    a -- b
+    b -- c
+    b -- d
+    c -- d
+    d -- e
+}

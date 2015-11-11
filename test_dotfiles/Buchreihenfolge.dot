@@ -1,0 +1,30 @@
+// Datei: Buchreihenfolge.dot
+// Markovmodell für die Reihenfolge der Bücher auf einem Stapel
+// Datum: 23.3.09
+// Aktualisierung: 1.4.11
+digraph markov {
+	z_1_2_3 -> z_2_1_3 [label=p2]
+	z_1_2_3 -> z_1_2_3 [label=p1]
+	z_1_2_3 -> z_3_1_2 [label=p3]
+
+	z_2_1_3 -> z_2_1_3 [label=p2]
+	z_2_1_3 -> z_1_2_3 [label=p1]
+	z_2_1_3 -> z_3_2_1 [label=p3]
+
+	z_3_2_1 -> z_3_2_1 [label=p3]
+	z_3_2_1 -> z_2_3_1 [label=p2]
+	z_3_2_1 -> z_1_3_2 [label=p1]
+
+	z_2_3_1 -> z_2_3_1 [label=p2]
+	z_2_3_1 -> z_3_2_1 [label=p3]
+	z_2_3_1 -> z_1_2_3 [label=p1]
+
+	z_3_1_2 -> z_3_1_2 [label=p3]
+	z_3_1_2 -> z_2_3_1 [label=p2]
+	z_3_1_2 -> z_1_3_2 [label=p1]
+
+	z_1_3_2 -> z_1_3_2 [label=p1]
+	z_1_3_2 -> z_2_1_3 [label=p2]
+	z_1_3_2 -> z_3_1_2 [label=p3]
+}
+
