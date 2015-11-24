@@ -1,3 +1,3 @@
 
 
-"C:\Program Files\scilab-5.4.1\bin\WScilex.exe" -f init.sce
+"C:\Program Files\scilab-5.5.2\bin\WScilex.exe" -f init.sce
