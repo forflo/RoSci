@@ -21,7 +21,7 @@ rosci_gvpr_convert = rosci_path_gvpr + " ""BEGIN { int cnt = 0; } ..
     BEG_G { printf(\""MAT%d = [\n\"", cnt); } ..
     N { printf(\""\n\""); } ..
     E { printf(\""%s, \"", label); } ..
-    END_G { printf(\""];\n\""); cnt++; }"" " + rosci_tempfile_namename;
+    END_G { printf(\""];\n\""); cnt++; }"" " + rosci_tempfile_name;
 
 rosci_gvpr_normalization = rosci_path_gvpr + " ""BEG_G { ..
     node_t new_nodes[]; ..
@@ -46,9 +46,9 @@ rosci_gvpr_normalization = rosci_path_gvpr + " ""BEG_G { ..
             } ..
         }    ..
         write($); ..
-    }"" " + path + " > " + rosci_tempfile_namename;
+    }"" ";
 
-function t_matrix = rosci_transition_matrix_dot(path)
+function t_matrix = rosci_transition_dot(path)
 	// Gvpr is a tool from the graphviz suite
 	// it is very well documented in it's man page.
 	// The following trick does the following
@@ -58,7 +58,7 @@ function t_matrix = rosci_transition_matrix_dot(path)
 	//   4) Execution of the resulting scilab code through execstr
 	
     [res1, a1, b1] = dos(rosci_gvpr_normalization);
-    [res2, a2, b2] = dos(rosci_gvpr_convert);
+    [res2, a2, b2] = dos(rosci_gvpr_convert + path + " > " + rosci_tempfile_namename);
     
 	// The scilab code will be executed inside the current functions
 	// context. Thus the implicitly created matrix MAT0 won't exist
