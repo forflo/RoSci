@@ -1,6 +1,8 @@
 ﻿#SingleInstance Force
 
-; creates an associative array of associative arrays containing program informations like
+;;
+; Creates an associative array of associative 
+; arrays containing program informations like
 ; version number, displayname and so on.
 returnProgramList()
 {
@@ -31,7 +33,9 @@ returnProgramList()
 	return holder
 }
 
-; returns True if a program 
+;;
+; returns True if a program with name
+; searchString is found in the programList
 checkForProgram(searchString)
 {
 	local result := false
@@ -54,6 +58,8 @@ checkForProgram(searchString)
 	return result
 }
 
+;;
+; Gets a value from the program list
 getValue(programName, programKey)
 {
 	local hl := returnProgramList()
@@ -69,6 +75,9 @@ getValue(programName, programKey)
 	return ""
 }
 
+;;
+; Gets a value from the program list using
+; a regular expression. programName can be the regex
 getValueFuzzy(programName, key)
 {
 	local hl := returnProgramList()
