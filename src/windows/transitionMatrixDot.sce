@@ -16,6 +16,14 @@
 // Author: Florian Mayer
 // Datum: 27.08.15
 //
+// Notes: The variables rosci_gvpr_convert and rosci_gvpr_normalization
+//    store code for the gvpr tool that ships with any valid graphviz
+//	  distribution. This code is embedded in this file only for simplicity.
+//	  For a thoroughly commented version of the two code snippets, please
+//	  visit RoSci/src/gvpr/normalize.gvpr and RoSci/src/gvpr/convert.gvpr,
+//    which corresponds to rosci_gvpr_normalization and rosci_gvpr_convert
+//	  respectively.
+//
 
 rosci_gvpr_convert = rosci_path_gvpr + " ""BEGIN { int cnt = 0; } ..
     BEG_G { printf(\""MAT%d = [\n\"", cnt); } ..

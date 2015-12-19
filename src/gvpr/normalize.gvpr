@@ -1,0 +1,65 @@
+/*
+ * The overall semantics of a gvpr program is,
+ * simply put, described with pseudo code as: 
+ *     for all node in SET_OF_NODES do
+ *         for all edge in get_set_of_edges(node) do
+ *             invoke(E, edge)
+ *         end
+ *         invoke(N, node)
+ *     end
+ */
+ 
+/* 
+ * This function will only be run once for any given graph
+ * appearing on the input stream.
+ */
+BEG_G {
+    node_t new_nodes[];
+    int cnt = 0;
+    int num_nodes = nNodes($);
+}
+
+/*
+ * Gets invoked every time a node is visited.
+ * This function constructs an globally visible
+ * array containing all nodes of the graph.
+ */
+N { 
+	new_nodes[cnt++] = $; 
+}
+
+/* 
+ * This function will only be run once for any given graph
+ * appearing on the input stream.
+ * This function adds missing labels. 
+ * 
+ * Consider the following dot code:
+ * digraph foo {
+ *     a -> b [label="0.1"];
+ *     b -> a [label="0.8"];
+ * }
+ *
+ * If you would interpret foo as markov graph adjacency matrix, 
+ * there'd be missing the transitions
+ *     a -> a [label="<somevalue>"];
+ *     b -> b [label="<somevalue>"];
+ * This function adds these transitions and puts a
+ * default value of "0.0" into the label attribute.
+ */
+END_G {
+    int i, j;
+    node_t head_node, tail_node;
+    edge_t e1;
+    for(i = 0; i < num_nodes; i++){
+        head_node = new_nodes[i];
+        for (j = 0; j < num_nodes; j++){
+            tail_node = new_nodes[j];
+            if (NULL == isEdge(tail_node, head_node, "")) {
+                e1 = edge(tail_node, head_node, "");
+                e1.label = "0.0";
+            }
+        }
+    }
+
+    write($);
+}

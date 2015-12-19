@@ -1,0 +1,56 @@
+/*
+ * This gvpr script generates Scilab code
+ * representing the structure of the graph.
+ * Given the dot code below:
+ * digraph foo {
+ *     a -> b [label="0.1"];
+ *     b -> a [label="0.8"];
+ *	   a -> a [label="0.9"];
+ *     b -> b [label="0.2"];
+ * }
+ *
+ * this script would output the following scilab code:
+ * 
+ * MAT0 = [
+ * 0.9, 0.1,
+ * 0.8, 0.2,
+ * ];
+ */
+
+/*
+ * This function only gets executed once,
+ * namely at the scripts beginning.
+ */
+BEGIN {
+	int cnt = 0; 
+}
+
+/* 
+ * This function will only be run once for any given graph
+ * appearing on the input stream.
+ */
+BEG_G {
+	printf("MAT%d = [\n", cnt); 
+}
+
+/*
+ * Gets invoked every time a node is visited.
+ */
+N {
+	printf("\n"); 
+}
+
+/*
+ * Gets invoked every time an edge is visited.
+ */
+E {
+	printf("%s, ", label); 
+}
+
+/* 
+ * This function will only be run once for any given graph
+ * appearing on the input stream.
+ */
+END_G {
+	printf("]\n"); cnt++; 
+}
