@@ -65,13 +65,13 @@ function t_matrix = rosci_transition_dot(path)
     //   3) gvpr 'gvpr program that converts graph to scilab code'
 	//   4) Execution of the resulting scilab code through execstr
 	
-    [res1, a1, b1] = dos(rosci_gvpr_normalization);
-    [res2, a2, b2] = dos(rosci_gvpr_convert + path + " > " + rosci_tempfile_namename);
+    [res1, a1, b1] = dos(rosci_gvpr_normalization + path + " > " + rosci_tempfile_name);
+    [res2, a2, b2] = dos(rosci_gvpr_convert);
     
 	// The scilab code will be executed inside the current functions
 	// context. Thus the implicitly created matrix MAT0 won't exist
 	// anymore once the function returns.
     execstr(res2);
     t_matrix = MAT0;
-	mdelete(rosci_tempfile_namename);
+	mdelete(rosci_tempfile_name);
 endfunction

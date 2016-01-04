@@ -63,9 +63,14 @@
 // Date: 11.3.15
 // 
 
+rosci_toreplace = "xmlns=""http://graphml.graphdrawing.org/xmlns""";
+
 function [P, names] = rosci_transition_matrix(graphml_Datei, string)
-    graphml_xml_Datei = graphml_Datei
-    doc = xmlRead(graphml_xml_Datei) //* Scilab-Objekt erzeugen
+	info = fileinfo(graphml_Datei);
+	fd = mopen(graphml_Datei);
+    graphml_string = mgetstr(info(1), fd);
+	graphml_string = strsubst(graphml_string, rosci_toreplace, "");
+    doc = xmlReadStr(graphml_string); //* Scilab-Objekt erzeugen
     
     // Alle Knotennamen extrahieren, Namensraum beachten
     nodenames = xmlXPath(doc, "//y:NodeLabel", ["y", "http://www.yworks.com/xml/graphml"])
